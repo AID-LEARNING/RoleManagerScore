@@ -13,15 +13,18 @@ class TagResolveListener
         $player = $event->getPlayer();
         $tag = $event->getTag();
         $tags = explode('.', $tag->getName(), 2);
+        
 
-        if(count($tags) < 2 || $tags[0] !== 'rmscore'){
+        if(count($tags) < 2 || $tags[0] !== 'rmscore' || !$player->isConnected()){
             return;
         }
+        $rolePlayer = RolePlayerManager::getInstance()->getPlayer($player);
 
+        if ($rolePlayer === null) return;
         $tag->setValue(match ($tags[1]) {
-            "role" => RolePlayerManager::getInstance()->getPlayer($player)->getRoleName(),
-            "prefix" => RolePlayerManager::getInstance()->getPlayer($player)->getPrefix(),
-            "suffix" => RolePlayerManager::getInstance()->getPlayer($player)->getSuffix()
+            "role" => $rolePlayer->getRoleName(),
+            "prefix" => $rolePlayer->getPrefix(),
+            "suffix" => $rolePlayer->getSuffix()
         });
     }
 
