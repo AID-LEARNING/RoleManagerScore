@@ -4,6 +4,7 @@ namespace SenseiTarzan\RoleManagerScore\Listeners;
 
 use Ifera\ScoreHud\event\PlayerTagsUpdateEvent;
 use Ifera\ScoreHud\scoreboard\ScoreTag;
+use pocketmine\event\EventPriority;
 use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\player\Player;
@@ -16,7 +17,7 @@ use SenseiTarzan\RoleManager\Event\EventChangeSuffix;
 class EventListener
 {
 
-    #[EventAttribute]
+    #[EventAttribute(EventPriority::MONITOR)]
     public function onJoin(PlayerJoinEvent $event): void
     {
         $player = $event->getPlayer();
@@ -55,7 +56,7 @@ class EventListener
     }
 
 
-    #[EventAttribute]
+    #[EventAttribute(EventPriority::MONITOR)]
     public function onChat(PlayerChatEvent $event): void{
         $this->sendUpdate($event->getPlayer());
     }
