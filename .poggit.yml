@@ -1,9 +1,9 @@
---- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/AID-LEARNING/RoleManagerScore
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/AID-LEARNING/RolesManagerScore
 branches:
   - stable
   - beta
 projects:
-  RoleManagerScore:
+  RolesManagerScore:
     path: ""
     icon: ""
     lint:
