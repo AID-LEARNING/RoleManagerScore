@@ -61,10 +61,14 @@ class EventListener
     }
 
     private function sendUpdate(Player $player): void{
+
+        $rolePlayer = RolePlayerManager::getInstance()->getPlayer($player);
+
+        if ($rolePlayer === null) return;
         (new PlayerTagsUpdateEvent($player, [
-            new ScoreTag("rmscore.role", RolePlayerManager::getInstance()->getPlayer($player)->getRoleName()),
-            new ScoreTag("rmscore.prefix", RolePlayerManager::getInstance()->getPlayer($player)->getPrefix()),
-            new ScoreTag("rmscore.suffix", RolePlayerManager::getInstance()->getPlayer($player)->getSuffix())
+            new ScoreTag("rmscore.role", $rolePlayer->getRoleName()),
+            new ScoreTag("rmscore.prefix", $rolePlayer->getPrefix()),
+            new ScoreTag("rmscore.suffix", $rolePlayer->getSuffix())
         ]))->call();
     }
 }
