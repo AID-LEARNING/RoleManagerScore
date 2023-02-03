@@ -1,0 +1,15 @@
+---
+branches:
+  - stable
+  - beta
+projects:
+  RoleManagerScore:
+    path: ""
+    icon: ""
+    lint:
+      phpstan: false
+    libs:
+      - src: AID-LEARNING/ExtraEvent/libEventAttribute
+        version: ^1.0.2
+
+...

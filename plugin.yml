@@ -1,0 +1,10 @@
+name: RoleManagerScore
+authors:
+  - SenseiTarzan
+version: 1.0.0
+main: SenseiTarzan\RoleManagerScore\Main
+api: 4.0.0
+description: A plugin implementing some basic tags for ScoreHud.
+depend:
+  - "ScoreHud"
+  - "RoleManager"
