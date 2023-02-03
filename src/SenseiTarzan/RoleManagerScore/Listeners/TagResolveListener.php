@@ -24,7 +24,8 @@ class TagResolveListener
         $tag->setValue(match ($tags[1]) {
             "role" => $rolePlayer->getRoleName(),
             "prefix" => $rolePlayer->getPrefix(),
-            "suffix" => $rolePlayer->getSuffix()
+            "suffix" => $rolePlayer->getSuffix(),
+            default => ""
         });
     }
 
