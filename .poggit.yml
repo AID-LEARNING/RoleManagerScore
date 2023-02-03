@@ -3,7 +3,7 @@ branches:
   - stable
   - beta
 projects:
-  RoleManagerScore:
+  RolesManagerScore:
     path: ""
     icon: ""
     lint:
