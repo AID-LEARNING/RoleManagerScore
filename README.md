@@ -7,4 +7,4 @@
 | `{rmscore.perfix}` | Prefix of the player |
 
 
-## ⚠️⚠️the scoreBord could not put your info if you use a db with an asyncTack or a Thread ⚠️⚠️
+## ⚠️the scoreBord could not put your info if you use a db with an asyncTack or a Thread ⚠️
