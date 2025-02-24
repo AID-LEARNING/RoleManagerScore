@@ -13,43 +13,49 @@ use SenseiTarzan\RoleManager\Component\RolePlayerManager;
 use SenseiTarzan\RoleManager\Event\EventChangePrefix;
 use SenseiTarzan\RoleManager\Event\EventChangeRole;
 use SenseiTarzan\RoleManager\Event\EventChangeSuffix;
+use SenseiTarzan\RoleManager\Event\EventLoadRolePlayer;
 
 class EventListener
 {
 
-    #[EventAttribute(EventPriority::MONITOR)]
-    public function onJoin(PlayerJoinEvent $event): void
+    #[EventAttribute]
+    public function onChangeRole(EventChangeRole $event): void
+    {
+
+        $player = $event->getPlayer();
+        if (!$player->isConnected()) {
+            return;
+        }
+        $this->sendUpdate($player);
+    }
+
+    #[EventAttribute]
+    public function onChangePrefix(EventChangePrefix $event): void
+    {
+
+        $player = $event->getPlayer();
+        if (!$player->isConnected()) {
+            return;
+        }
+        $this->sendUpdate($player);
+    }
+
+    #[EventAttribute]
+    public function onChangeSuffix(EventChangeSuffix $event): void
+    {
+
+        $player = $event->getPlayer();
+        if (!$player->isConnected()) {
+            return;
+        }
+        $this->sendUpdate($player);
+    }
+
+    #[EventAttribute]
+    public function onLoadRolePlayer(EventLoadRolePlayer $event): void
     {
         $player = $event->getPlayer();
-       if (!$player->isConnected()){
-           return;
-       }
-
-       $this->sendUpdate($player);
-    }
-    #[EventAttribute]
-    public function onChangeRole(EventChangeRole $event): void{
-
-        $player = $event->getPlayer();
-        if (!$player->isConnected()){
-            return;
-        }
-        $this->sendUpdate($player);
-    }
-    #[EventAttribute]
-    public function onChangePrefix(EventChangePrefix $event): void{
-
-        $player = $event->getPlayer();
-        if (!$player->isConnected()){
-            return;
-        }
-        $this->sendUpdate($player);
-    }
-    #[EventAttribute]
-    public function onChangeSuffix(EventChangeSuffix $event): void{
-
-        $player = $event->getPlayer();
-        if (!$player->isConnected()){
+        if (!$player->isConnected()) {
             return;
         }
         $this->sendUpdate($player);
@@ -57,11 +63,17 @@ class EventListener
 
 
     #[EventAttribute(EventPriority::MONITOR)]
-    public function onChat(PlayerChatEvent $event): void{
-        $this->sendUpdate($event->getPlayer());
+    public function onChat(PlayerChatEvent $event): void
+    {
+        $player = $event->getPlayer();
+        if (!$player->isConnected()) {
+            return;
+        }
+        $this->sendUpdate($player);
     }
 
-    private function sendUpdate(Player $player): void{
+    private function sendUpdate(Player $player): void
+    {
 
         $rolePlayer = RolePlayerManager::getInstance()->getPlayer($player);
 
